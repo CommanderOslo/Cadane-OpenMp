@@ -19,10 +19,10 @@ allocate(smaximum(M))
 !$omp parallel shared(a, M, N, smaximum, leftmaximum, rightmaximum, downmaximum) private(MoveUp, MoveDown, MoveLeft, MoveRight, summ, p) default(none)
 allocate(p(N))
 !$omp do schedule(dinamic)
-do MoveUp = 1,M
+do MoveUp = 1, M
   p = 0
-  do MoveDown = MoveUpm,
-    do j = 1,N
+  do MoveDown = MoveUp, M
+    do j = 1, N
       p(j) = p(j) + a(MoveDown, j)
     enddo
     call SumArray(p, MoveLeft, MoveRight, summ)
