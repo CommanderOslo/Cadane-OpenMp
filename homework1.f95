@@ -26,7 +26,7 @@ do MoveUp = 1, M
       p(j) = p(j) + a(MoveDown, j)
     enddo
     call SumArray(p, MoveLeft, MoveRight, summ)
-    if (s > smaximum(MoveUp) .or. MoveUp == MoveDown) then
+    if (summ > smaximum(MoveUp) .or. MoveUp == MoveDown) then
       smaximum(MoveUp) = summ
       leftmaximum(MoveUp) = MoveLeft
       rightmaximum(MoveUp) = MoveRight
@@ -53,12 +53,12 @@ subroutine SumArray(a, x1, x2, sum)
 real(8), intent(in), dimension(:) :: a
 integer(4), intent(out) :: x1, x2
 real(8), intent(out) :: sum
-integer(4) :: i, l, M
+integer(4) :: i, l, N
 real(8) :: maximum, sum1, sum2
-M = size(a)
+N = size(a)
 sum = a(1); x1 = 1; x2 = 1
 maximum=a(1); l=1
-do i=2,N
+do i=2, N
   sum1 = a(i)
   sum2 = maximum + a(i)
   if (sum1 > sum2) then
